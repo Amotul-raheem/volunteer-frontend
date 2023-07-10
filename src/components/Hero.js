@@ -6,8 +6,27 @@ import {MdClose} from 'react-icons/md';
 import axios from "axios";
 
 
-const availableTags = ['Environment', 'Community', 'Hunger', 'Homelessness', 'Education', 'Youth'];
-const url = "https://q9hxtzktk0.execute-api.us-east-1.amazonaws.com/dev/events"
+const availableTags = [
+    'Environment',
+    'Community',
+    'Hunger',
+    'Homelessness',
+    'Education',
+    'Youth',
+    'Elderly',
+    'Animals',
+    'Health',
+    'Arts and Culture',
+    'Disaster Relief',
+    'Women Empowerment',
+    'LGBTQ+ Rights',
+    'Sustainable Development',
+    'Poverty Alleviation',
+];
+
+const url = "https://t6i823sed9.execute-api.us-east-1.amazonaws.com/dev/events"
+
+
 function Hero() {
     const [isOpen, setIsOpen] = useState(false);
     const [formData, setFormData] = useState({
@@ -32,15 +51,13 @@ function Hero() {
 
     const handleTagClick = (tag) => {
         setFormData((prevFormData) => ({
-            ...prevFormData,
-            tags: [...prevFormData.tags, tag],
+            ...prevFormData, tags: [...prevFormData.tags, tag],
         }));
     };
 
     const handleRemoveTag = (tag) => {
         setFormData((prevFormData) => ({
-            ...prevFormData,
-            tags: prevFormData.tags.filter((t) => t !== tag),
+            ...prevFormData, tags: prevFormData.tags.filter((t) => t !== tag),
         }));
     };
 
@@ -55,8 +72,13 @@ function Hero() {
         e.preventDefault();
         handleCloseModal()
         try {
-            const response = await axios.post(url, formData);
-            console.log(response);
+            const response = await axios.post(url, formData, {
+                headers: {
+                    "Access-Control-Allow-Origin": "*", // Required for CORS support to work
+                    "Access-Control-Allow-Credentials": true, // Required for cookies, authorization headers with HTTPS
+                },
+            });
+            console.log(response)
         } catch (error) {
             console.log(error);
         }
@@ -75,13 +97,15 @@ function Hero() {
 
     return (<div className='w-screen flex justify-center items-center'>
             <div className='h-auto w-[90%] flex justify-between  my-12 '>
-                <div  onClick={handleOpenModal} className='w-[55%] h-[250px] m-4 border-2 border-dashed border-white flex flex-col items-center justify-center rounded-lg cursor-pointer'>
+                <div onClick={handleOpenModal}
+                     className='w-[55%] h-[250px] m-4 border-2 border-dashed border-white flex flex-col items-center justify-center rounded-lg cursor-pointer'>
                     <div className='bg-[#DAF2F9] h-12 w-12 rounded-full flex justify-center items-center m-5 '>
                         <AiOutlinePlus size={30}/>
                     </div>
                     <h2 className='text-white font-normal  text-2xl'>Create Event</h2>
                 </div>
-                <div className='w-[45%] h-[250px] bg-[#DAF2F9] m-4 flex flex-col justify-center items-center rounded-lg shadow-2xl '>
+                <div
+                    className='w-[45%] h-[250px] bg-[#DAF2F9] m-4 flex flex-col justify-center items-center rounded-lg shadow-2xl '>
                     <div
                         className='bg-white text-[#3599FF] h-14 w-14 rounded-full flex justify-center items-center m-3'>
                         <h2 className='font-Quick font-bold text-2xl'>BF</h2>
@@ -211,8 +235,7 @@ function Hero() {
                                 </button>))}
                             </div>
                             <div className="mt-2">
-                                {formData.tags.map((tag) => (
-                                    <span
+                                {formData.tags.map((tag) => (<span
                                     key={tag}
                                     className="inline-block bg-gray-500 text-white rounded-full px-3 py-1 text-sm mr-2 mb-2"
                                 >{tag}

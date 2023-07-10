@@ -7,13 +7,14 @@ import axios from "axios";
 
 function Home() {
     const [volunteerEvents, setVolunteerEvents ] = useState([])
+    const [test, setTest] =useState()
 
     useEffect(() => {
         async function getResults() {
-            const results = await axios.get("https://q9hxtzktk0.execute-api.us-east-1.amazonaws.com/dev/events");
+            const results = await axios.get("https://t6i823sed9.execute-api.us-east-1.amazonaws.com/dev/events");
             setVolunteerEvents(results.data)
-            console.log("hello")
         }
+        getResults()
     },[volunteerEvents])
 
 

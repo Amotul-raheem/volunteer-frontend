@@ -2,8 +2,23 @@ import React, {useState} from "react";
 import axios from "axios";
 
 
-const availableTags = ['Environment', 'Community', 'Hunger', 'Homelessness', 'Education', 'Youth', 'Orphans', 'Sport', 'Climate'];
-const url = "https://q9hxtzktk0.execute-api.us-east-1.amazonaws.com/dev/users"
+const availableTags = [
+    'Environment',
+    'Community',
+    'Hunger',
+    'Homelessness',
+    'Education',
+    'Youth',
+    'Elderly',
+    'Animals',
+    'Health',
+    'Arts and Culture',
+    'Disaster Relief',
+    'Women Empowerment',
+    'Sustainable Development',
+    'Poverty Alleviation',
+];
+const url = "https://t6i823sed9.execute-api.us-east-1.amazonaws.com/dev/users"
 
 function Volunteer(props) {
     const {eventData} = props
@@ -57,7 +72,7 @@ function Volunteer(props) {
                 ? prevFormData.tags.filter((t) => t !== tag)
                 : [...prevFormData.tags, tag],
         }));
-        setShowEvents(true); // Show events when a filter is clicked
+        setShowEvents(true);
     };
 
 
@@ -177,7 +192,7 @@ function Volunteer(props) {
 
                         </div>
 
-                        {showEvents && filteredEvents.length > 0 && (
+                        {showEvents && filteredEvents?.length > 0 && (
                             <div className="mb-4 mt-8">
                                 <label className="block font-semibold text-xl mb-2">Available Events</label>
                                 {filteredEvents.map((event) => (
@@ -206,13 +221,7 @@ function Volunteer(props) {
                             >
                                 Sign Up
                             </button>
-                            <button
-                                type="button"
-                                className="ml-2 text-gray-500 border border-gray-300 rounded-xl py-3 px-6 hover:text-gray-600"
-                                // onClick={''}
-                            >
-                                Cancel
-                            </button>
+
                         </div>
 
                     </form>
