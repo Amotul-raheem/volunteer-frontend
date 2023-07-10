@@ -7,7 +7,6 @@ import axios from "axios";
 
 function Home() {
     const [volunteerEvents, setVolunteerEvents ] = useState([])
-    const [test, setTest] =useState()
 
     useEffect(() => {
         async function getResults() {
