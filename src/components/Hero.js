@@ -3,9 +3,11 @@ import {AiOutlinePlus} from 'react-icons/ai';
 import {MdLocationOn} from 'react-icons/md';
 import {GrMail} from 'react-icons/gr';
 import {MdClose} from 'react-icons/md';
+import axios from "axios";
+
 
 const availableTags = ['Environment', 'Community', 'Hunger', 'Homelessness', 'Education', 'Youth'];
-
+const url = "https://q9hxtzktk0.execute-api.us-east-1.amazonaws.com/dev/events"
 function Hero() {
     const [isOpen, setIsOpen] = useState(false);
     const [formData, setFormData] = useState({
@@ -49,12 +51,15 @@ function Hero() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         handleCloseModal()
-        // Perform form submission logic
-        console.log('Form submitted');
-        console.log(formData)
+        try {
+            const response = await axios.post(url, formData);
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
         // Reset form values
         setFormData({
             eventName: '',
@@ -243,7 +248,7 @@ function Hero() {
                             </button>
                             <button
                                 type="button"
-                                className="ml-2 text-gray-500 border border-e-green-500 hover:text-gray-600"
+                                className="ml-2 text-gray-500 border border-gray-500 rounded-xl px-4 hover:text-gray-600"
                                 onClick={handleCloseModal}
                             >
                                 Cancel

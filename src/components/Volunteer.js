@@ -1,7 +1,9 @@
 import React, {useState} from "react";
+import axios from "axios";
 
 
 const availableTags = ['Environment', 'Community', 'Hunger', 'Homelessness', 'Education', 'Youth', 'Orphans', 'Sport', 'Climate'];
+const url = "https://q9hxtzktk0.execute-api.us-east-1.amazonaws.com/dev/users"
 
 function Volunteer(props) {
     const {eventData} = props
@@ -71,8 +73,14 @@ function Volunteer(props) {
     };
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        try {
+            const response = await axios.post(url, formData);
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
         // Perform form submission logic
         console.log('Form submitted');
         console.log(formData)
