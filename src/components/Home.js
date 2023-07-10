@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import NavBar from "./NavBar";
 import Hero from "./Hero";
 import Events from "./Events";
-import Volunteer from "./Volunteer";
 import axios from "axios";
 
 
@@ -23,7 +22,6 @@ function Home() {
             <NavBar/>
             <Hero/>
             <Events tableItems={volunteerEvents}/>
-            {/*<Volunteer eventData={volunteerEvents}/>*/}
         </div>
     )
 
