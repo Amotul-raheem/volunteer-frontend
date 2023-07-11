@@ -91,7 +91,7 @@ function Hero() {
             startTime: '',
             endTime: '',
             location: '',
-            numVolunteers: '',
+            numOfVolunteers: '',
         })
     };
 
