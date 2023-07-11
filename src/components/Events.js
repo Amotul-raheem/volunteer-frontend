@@ -34,7 +34,7 @@ function Events(props) {
                     <td className="py-2 px-2 ">
                         {item.tags.map((tag) => (<span
                             key={tag}
-                            className="inline-block bg-gray-200 text-gray-800 rounded-full px-2 py-1 text-sm font-semibold mr-1"
+                            className="inline-block bg-gray-200 text-gray-800 rounded-full px-2 py-1 my-1 text-sm font-semibold mr-1"
                         >
                   {tag}
                 </span>))}
