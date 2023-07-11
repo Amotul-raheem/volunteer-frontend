@@ -4,6 +4,7 @@ function Events(props) {
     const {tableItems} = props
 
     //Testing Amplify
+    //Test Amplify
 
     return (<div className=' flex justify-center '>
         <div className='w-[95%] font-Quick'>
