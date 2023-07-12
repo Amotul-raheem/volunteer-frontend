@@ -2,8 +2,8 @@ import React from "react";
 
 function Events(props) {
     const {tableItems} = props
+    //Testing amplify
 
-    //Amplify Testing
     return (<div className=' flex justify-center '>
         <div className='w-[95%] font-Quick'>
             <div className='flex justify-between my-3 items-center'>
